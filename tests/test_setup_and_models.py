@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from config import Settings, settings
-from models import (
+from personalized_recommendation_tool.config import Settings, settings
+from personalized_recommendation_tool.models import (
     BadgeOpportunity,
     ClientContextPayload,
     CollectedStudentData,
@@ -81,7 +81,6 @@ class SetupAndModelsTests(unittest.TestCase):
         )
         self.assertEqual(output.recommendations[0].rank, 1)
         self.assertFalse((ROOT / "ai_recommendation_service").exists())
-        self.assertFalse((ROOT / "personalized_recommendation_tool").exists())
 
 
 if __name__ == "__main__":

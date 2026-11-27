@@ -7,8 +7,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY config.py models.py student_data_collection.py student_learning_profile.py README.md ./
+COPY personalized_recommendation_tool ./personalized_recommendation_tool
+COPY README.md .
 
 EXPOSE 8001
 
-CMD ["python", "-c", "import config, models, student_data_collection, student_learning_profile; print('Personalized Recommendation Tool ready')"]
+CMD ["python", "-c", "import personalized_recommendation_tool; print('Personalized Recommendation Tool ready')"]
