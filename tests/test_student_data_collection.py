@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from personalized_recommendation_tool.models import ClientContextPayload
-from personalized_recommendation_tool.student_data_collection import (
+from models import ClientContextPayload
+from student_data_collection import (
     StudentDataCollector,
     is_creator_published_activity,
 )

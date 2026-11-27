@@ -3,7 +3,7 @@
 5-stage AI-Powered Personalized Recommendation Tool aligned with the Personalized Recommendation Tool Architecture.
 *(Note: The downstream **AI Recommendation Service**, **Recommendation DB**, and **Redis Cache** are implemented separately in Java Spring Boot.)*
 
-## Architecture Stages (`personalized_recommendation_tool/`)
+## Architecture Files
 
 - `config.py`: Existing microservice URLs (`:8081`–`:8088`), HTTP timeout, and optional LLM settings.
 - `models.py`: Typed Pydantic schemas for all 5 pipeline stages.
