@@ -12,6 +12,7 @@
 - `learning_profile_analysis.py`: **Stage 3 — Learning Profile Analysis**
 - `recommendation_generation.py`: **Stage 4 — Recommendation Generation**
 - `recommendation_ranking.py`: **Stage 5 — Recommendation Ranking**
+- `pipeline.py`: End-to-end 5-stage pipeline orchestrator (`RecommendationPipeline`) returning `RecommendationToolOutput`
 
 ## Feature Branches
 
