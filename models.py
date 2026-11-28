@@ -161,3 +161,18 @@ class RecommendationToolOutput(BaseModel):
     recommendedActivities: List[RecommendationCandidate]
     studyTips: List[RecommendationCandidate]
     sourceHealth: Dict[str, str]
+
+
+class RecommendationBundleResponse(RecommendationToolOutput):
+    """Persisted or cached recommendation bundle returned to downstream services."""
+
+    cacheHit: bool = False
+    storageBackend: str = "sqlite"
+
+
+class RecommendationFeedbackRequest(BaseModel):
+    """Student interaction feedback recorded against a generated recommendation."""
+
+    action: Literal["CLICKED", "STARTED", "COMPLETED", "DISMISSED", "HELPFUL"]
+    rating: Optional[int] = Field(default=None, ge=1, le=5)
+    comment: Optional[str] = None
