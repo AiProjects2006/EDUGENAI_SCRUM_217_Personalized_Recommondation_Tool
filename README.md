@@ -13,6 +13,8 @@
 - `recommendation_generation.py`: **Stage 4 — Recommendation Generation**
 - `recommendation_ranking.py`: **Stage 5 — Recommendation Ranking**
 - `pipeline.py`: End-to-end 5-stage pipeline orchestrator (`RecommendationPipeline`) returning `RecommendationToolOutput`
+- `recommendation_db.py`: Recommendation DB persistence (`recommendation_db` via MySQL with SQLite fallback for profiles, recommendations, and feedback)
+- `redis_cache.py`: Redis cache layer (`rec:user:<id>:v1`) with TTL and invalidation (plus in-process fallback)
 
 ## Feature Branches
 
@@ -22,6 +24,7 @@
 4. `feature/learning-profile-analysis`: Stage 3 — Learning Profile Analysis
 5. `feature/recommendation-generation`: Stage 4 — Recommendation Generation
 6. `feature/recommendation-ranking`: Stage 5 — Recommendation Ranking
+7. `feature/recommendation-db-and-redis-cache`: Recommendation DB & Redis Cache
 
 ## Run Tests
 

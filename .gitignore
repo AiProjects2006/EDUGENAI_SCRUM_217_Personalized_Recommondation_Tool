@@ -4,6 +4,9 @@ __pycache__/
 .venv/
 venv/
 .env
+data/
+*.sqlite
+*.sqlite3
 .pytest_cache/
 .idea/
 .DS_Store

@@ -14,7 +14,9 @@ from models import (
     ClientContextPayload,
     CollectedStudentData,
     LearningProfileAnalysis,
+    RecommendationBundleResponse,
     RecommendationCandidate,
+    RecommendationFeedbackRequest,
     RecommendationToolOutput,
     StudentLearningProfile,
     SubjectLearningStat,
@@ -31,7 +33,11 @@ class SetupAndModelsTests(unittest.TestCase):
         self.assertEqual(cfg.enrollment_service_url, "http://localhost:8084")
         self.assertEqual(cfg.settings_service_url, "http://localhost:8084")
         self.assertEqual(cfg.progress_service_url, "http://localhost:8088")
-        self.assertFalse(hasattr(settings, "mysql_database"))
+        self.assertEqual(cfg.db_type, "auto")
+        self.assertEqual(cfg.mysql_database, "recommendation_db")
+        self.assertEqual(cfg.redis_host, "localhost")
+        self.assertEqual(cfg.redis_port, 6379)
+        self.assertEqual(cfg.cache_ttl_seconds, 900)
 
     def test_collected_student_data_and_profile_defaults(self) -> None:
         ctx = ClientContextPayload(studentName="Nethmi", gradeLevel="Grade 4")
@@ -80,6 +86,11 @@ class SetupAndModelsTests(unittest.TestCase):
             sourceHealth={"courseService": "ok"},
         )
         self.assertEqual(output.recommendations[0].rank, 1)
+        bundle = RecommendationBundleResponse(**output.model_dump(), cacheHit=True, storageBackend="mysql")
+        self.assertTrue(bundle.cacheHit)
+        self.assertEqual(bundle.storageBackend, "mysql")
+        fb = RecommendationFeedbackRequest(action="DISMISSED", rating=4, comment="Too easy")
+        self.assertEqual(fb.action, "DISMISSED")
         self.assertFalse((ROOT / "ai_recommendation_service").exists())
         self.assertFalse((ROOT / "personalized_recommendation_tool").exists())
 

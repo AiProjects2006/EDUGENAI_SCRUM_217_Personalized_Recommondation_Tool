@@ -41,5 +41,21 @@ class Settings:
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
 
+    db_type: str = os.getenv("RECOMMENDATION_DB_TYPE", "auto").strip().lower()
+    mysql_host: str = os.getenv("MYSQL_HOST", "localhost")
+    mysql_port: int = int(os.getenv("MYSQL_PORT", "3306"))
+    mysql_user: str = os.getenv("MYSQL_USER", "root")
+    mysql_password: str = os.getenv("MYSQL_PASSWORD", "root123")
+    mysql_database: str = os.getenv("MYSQL_DATABASE", "recommendation_db")
+    sqlite_db_path: str = os.getenv(
+        "SQLITE_DB_PATH",
+        str(_ROOT_DIR / "data" / "recommendation_db.sqlite"),
+    )
+
+    redis_host: str = os.getenv("REDIS_HOST", "localhost")
+    redis_port: int = int(os.getenv("REDIS_PORT", "6379"))
+    redis_db: int = int(os.getenv("REDIS_DB", "0"))
+    cache_ttl_seconds: int = int(os.getenv("RECOMMENDATION_CACHE_TTL_SECONDS", "900"))
+
 
 settings = Settings()
